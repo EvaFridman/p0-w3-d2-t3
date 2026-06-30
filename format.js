@@ -2,14 +2,14 @@
 function formatPrice(number) {
     if (typeof number !== "number" || isNaN(number)) {
         return "Error! Price has to be a number";
-    };
-    const formatter = new Intl.NumberFormat("ru-RU", {
-        style: "currency",
-        currency: "RUB",
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2
-    });
-    return formatter.format(number);
+    } else {
+        return new Intl.NumberFormat("ru-RU", {
+            style: "currency",
+            currency: "RUB",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+        }).format(number)
+    }
 }
 console.log(formatPrice(1000));
 console.log(formatPrice(500.5));
@@ -30,7 +30,7 @@ function greet(name, partOfDay) {
     if (typeof name !== 'string' || !name.trim()) return 'Error! Name has to be a string';
     if (typeof partOfDay !== 'string' || !partOfDay.trim()) return 'Error! Part of day has to be a string';
 
-    return "Good " + partOfDay + ", " + name + "!";
+    return "Good " + partOfDay + ", " + formatName(name) + "!";
 }
 console.log(greet("Ana", "morning"));
 console.log(greet("James", "afternoon"));
